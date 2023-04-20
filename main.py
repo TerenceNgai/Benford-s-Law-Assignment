@@ -32,3 +32,30 @@ first_digit_freq = count_first_digit_freq(sales_values)
 # Calculate the percentage of each first digit frequency
 total_count = sum(first_digit_freq)
 percentage_freq = [freq/total_count*100 for freq in first_digit_freq]
+# Print the numeric representation of the distribution of first digits
+print("Numeric representation of the distribution of first digits:")
+for i in range(1, 10):
+    print(f"{i}: {first_digit_freq[i]} ({percentage_freq[i]:.2f}%)")
+
+# Plot the frequency distribution of the first digits
+fig, ax = plt.subplots()
+ax.bar(range(1, 10), first_digit_freq[1:])
+ax.set_xlabel('First Digit')
+ax.set_ylabel('Frequency')
+ax.set_title('Frequency Distribution of First Digits')
+
+# Check if the first digit frequency is within the range of 29% to 32%
+if percentage_freq[1] >= 29 and percentage_freq[1] <= 32:
+    print("\nThe data indicates that fraud likely did not occur.")
+else:
+    print("\nThe data may indicate the possibility of fraud.")
+   
+# Export the digit frequency as a CSV file
+with open("results.csv", 'w') as f:
+    f.write("Digit,Percentage\n")
+    for i in range(1, 10):
+        f.write(f"{i},{percentage_freq[i]:.2f}\n")
+print("Results exported to results.csv.")
+
+plt.show()  # Show the frequency distribution graph
+
