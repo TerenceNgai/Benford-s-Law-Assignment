@@ -23,3 +23,12 @@ def count_first_digit_freq(numbers):
         first_digit = int(str(num)[0])  # get the first digit of the number
         freq[first_digit] += 1
     return freq
+# Get the sales data as a list of numbers
+sales_values = list(sales_data.values())
+
+# Count the first digit frequency in the sales data
+first_digit_freq = count_first_digit_freq(sales_values)
+
+# Calculate the percentage of each first digit frequency
+total_count = sum(first_digit_freq)
+percentage_freq = [freq/total_count*100 for freq in first_digit_freq]
